@@ -1,8 +1,15 @@
-fetch("https://pokeapi.co/api/v2/pokemon/1")
-.then((resp) => resp.json())
-.then((data) => {
-  const img = document.createElement('img');
-  img.src = data.sprites.front_default;
+window.onload = () => {
+  const elPokemonId = document.querySelector('.field-id');
+  const elIdSubmit = document.querySelector('.btn-submit');
 
-  document.body.appendChild(img);
-});
+  elIdSubmit.addEventListener('click', () => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${elPokemonId.value}`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      const img = document.createElement('img');
+      img.src = data.sprites.front_default;
+
+      document.body.appendChild(img);
+    });
+  })
+}
